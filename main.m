@@ -1,3 +1,4 @@
+%coding=<GB 2312>
 clear;
 clc;close all;
 
