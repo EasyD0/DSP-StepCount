@@ -1,3 +1,4 @@
+%coding=<GB 2312>
 function final_output = delete_zero(A,n,threshold)
 % 输入序列,和要删除的连续0最少长度n,
 %该函数将删除大于等于n的连续的0,并返回删除的起始点

@@ -1,3 +1,4 @@
+%coding=<GB 2312>
 function output = connect_signal (A,del_begin,del_end,original_length)
     % 输入切分后的序列,但要恢复到原先的状态
     %非零序列和零序列应该是交替进行的
