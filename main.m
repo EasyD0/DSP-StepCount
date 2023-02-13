@@ -7,7 +7,7 @@ theta=1.4;  %快跑阈值设为1.08,其他设为1.4
 
 %提取三轴数据,并分别保存到x,y,z中, 除以4096后得到的就是重力加速度g的倍数
 %且文件中的数据是走100步的数据
-A=load("上楼.txt");
+A=load("间隔走.txt");
 len_A=length(A);
 A_x=A(:,1)/4096;   A_y=A(:,2)/4096;  A_z=A(:,3)/4096;
 
@@ -27,8 +27,8 @@ Acc=sqrt(A_x.^2+A_y.^2+A_z.^2);      %加速度的模长
 S=delete_zero(Acc,80,theta);      %若加速度序列中, 有超过连续80(0.8秒)个点小于1.2个重力加速度,则删除
 Time_D=length(S{1})/100;        %删除掉无效长度后对应的时间长度
 
-X_Abscissa_D=linspace(0,Time_D,length(S{1}));     %绘制 时域图的横坐标
-X_Abscissa_f_D=linspace(0,2*pi,length(S{1}));     %
+X_Abscissa_D=linspace(0,Time_D,length(S{1}));     %绘制 删除掉无效长度后 时域图的横坐标
+X_Abscissa_f_D=linspace(0,2*pi,length(S{1}));     %绘制 删除掉无效长度后 频域图的横坐标
 
 
 figure;  %绘制三周加速度计的原始数据图
@@ -98,10 +98,13 @@ figure
     xlabel("时间(s)");
 
 %经过带通滤波后,将其进行排序,去除掉幅度较小的频率
+temp=sort(abs(Z),'descend');
+Z=Z.*(abs(Z)>temp(10));
+%{
 temp=sort(abs(Z));  %从小到大排序
 %Z(temp(length(temp)-2)<abs(Z)<temp(length(temp)-19)); 
 Z=Z.*((abs(Z)>temp(length(temp)-9))&(abs(Z)<temp(length(temp))));
-
+%}
 figure
     plot(X_Abscissa_f_D,abs(Z));
     xlim([-0.1,2*pi]);
