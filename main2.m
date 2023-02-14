@@ -98,8 +98,9 @@ zlabel('spectrogram');
 [ix,it]=istft(Z,100,'Window',hamming(500,'periodic'),'OverlapLength',499);
 figure;
 plot(it,ix);
-
-[peaks,locs]=findpeaks(ix,X_Abscissa_D);
+ix=connect_signal(ix,S{3},S{4},len_A);
+plot(ix);
+[peaks,locs]=findpeaks(ix,X_Abscissa);
 figure
     stairs([0,locs,locs(end)+1],[0,1:length(locs),length(locs)]); 
     %这里末尾加1个同样的值是为了拖长最后一个阶梯,且加了一个开始点(0,0)
