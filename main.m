@@ -7,7 +7,7 @@ theta=1.4;  %快跑阈值设为1.08,其他设为1.4
 
 %提取三轴数据,并分别保存到x,y,z中, 除以4096后得到的就是重力加速度g的倍数
 %且文件中的数据是走100步的数据
-A=load("间隔走.txt");
+A=load("跑步机快跑.txt");
 len_A=length(A);
 A_x=A(:,1)/4096;   A_y=A(:,2)/4096;  A_z=A(:,3)/4096;
 
@@ -46,7 +46,7 @@ figure;  %绘制总加速度
     xlabel("time(s)");
 
 figure %绘制删除无效值后时域图像
-    plot(X_Abscissa,S{2});
+    plot(X_Abscissa_D,S{1});
     xlim([0,Time_D]);
     title("删除无效值后的加速度值");
     xlabel("time(s)");
